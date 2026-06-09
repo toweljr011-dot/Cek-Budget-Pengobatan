@@ -1,13 +1,11 @@
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
-import json
 
 st.set_page_config(page_title="Cek Budget Pengobatan", page_icon="💊", layout="centered")
 
 # Ambil credentials dari Streamlit Secrets
-creds_json = st.secrets["GOOGLE_CREDENTIALS"]
-creds_dict = json.loads(creds_json)
+creds_dict = dict(st.secrets["GOOGLE_CREDENTIALS"])
 
 scope = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
